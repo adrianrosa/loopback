@@ -1,0 +1,32 @@
+{
+  "name": "otra",
+  "plural": "otros",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "foreignKeys": {
+    "categoryId": {
+      "name": "categoryIdotra",
+      "foreignKey": "categoryId",
+      "entityKey": "id",
+      "entity": "category"
+    }
+  },
+  "properties": {
+    "name": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "category": {
+      "type": "belongsTo",
+      "model": "category",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

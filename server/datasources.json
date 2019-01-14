@@ -1,0 +1,16 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "mysqlDs": {
+    "host": "127.0.0.1",
+    "port": 3307,
+    "url": "mysql://root:password@127.0.0.1:3307/smapi",
+    "database": "smapi",
+    "password": "password",
+    "name": "mysqlDs",
+    "user": "root",
+    "connector": "mysql"
+  }
+}

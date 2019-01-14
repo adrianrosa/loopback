@@ -1,0 +1,33 @@
+{
+  "name": "adrian",
+  "plural": "adrianres",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "adasd": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "category": {
+      "type": "belongsTo",
+      "model": "category",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {},
+  "foreignKeys": {
+    "categoryId": {
+      "name": "categoryIdadrian",
+      "foreignKey": "categoryId",
+      "entityKey": "id",
+      "entity": "category"
+    }
+  }
+}
