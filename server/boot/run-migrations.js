@@ -1,31 +1,26 @@
+let getMigrations = require("../migrations");
+
 module.exports = function(server) {
 
-  /*if(process.env.NODE_ENV == "production" || !process.env.SEED_DATA || process.env.SEED_DATA == "false") {
-    server.dataSources.mysqlDs.automigrate();
-    server.dataSources.mysqlDs.autoupdate();
-    console.log("Tables created successfully");
-    return;
-  }*/
-
-  /*server.dataSources.mysqlDs.automigrate('AccessToken', function(err) {
-    if (err) throw err;
+  server.dataSources.mysqlDs.automigrate('AccessToken', function(err) {
+    //if (!err) console.log("Migration successfully: Access Token");
   });
 
   server.dataSources.mysqlDs.automigrate('ACL', function(err) {
-    if (err) throw err;
+    //if (!err) console.log("Migration successfully: ACL");
   });
 
   server.dataSources.mysqlDs.automigrate('Role', function(err) {
-    if (err) throw err;
+    //if (!err) console.log("Migration successfully: Role");
   });
 
   server.dataSources.mysqlDs.automigrate('RoleMapping', function(err) {
-    if (err) throw err;
+    //if (!err) console.log("Migration successfully: Role Mapping");
   });
 
   server.dataSources.mysqlDs.automigrate('User', function(err) {
-    if (err) throw err;
-  });*/
+    //if (!err) console.log("Migration successfully: User");
+  });
 
   let ds = server.dataSources.mysqlDs;
 
@@ -34,20 +29,10 @@ module.exports = function(server) {
     let migrations = getMigrations();
     if (lastMigration < migrations.length) {
       for (let index = lastMigration; index < migrations.length; index++) {
-        executeQuery(migrations[index], index, "table");
+        executeQuery(migrations[index].query, index, migrations[index].tag);
       }
     }
   });
-
-  function getMigrations() {
-    let migrations = new Array();
-    migrations[0] = "CREATE TABLE otra (id INT PRIMARY KEY NOT NULL, name VARCHAR(50) NOT NULL);";
-    migrations[1] = "CREATE TABLE otra2 (id INT PRIMARY KEY NOT NULL, name VARCHAR(50) NOT NULL);";
-    migrations[2] = "CREATE TABLE otra3 (id INT PRIMARY KEY NOT NULL, name VARCHAR(50) NOT NULL);";
-    migrations[3] = "CREATE TABLE otra4 (id INT PRIMARY KEY NOT NULL, name VARCHAR(50) NOT NULL);";
-    migrations[4] = "CREATE TABLE otra5 (id INT PRIMARY KEY NOT NULL, name VARCHAR(50) NOT NULL);";
-    return migrations;
-  }
 
   function executeQuery(query, migrationNumber, name) {
     ds.connector.execute(query, null, function(err) {
